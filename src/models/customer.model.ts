@@ -1,14 +1,18 @@
-import { Entity, hasMany, model, property } from '@loopback/repository';
-import { Order } from './order.model';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Order} from './order.model';
 
-@model()
+//@model()
+@model({
+  settings: {
+    strictObjectIDCoercion: true
+  }
+})
 export class Customer extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
-    required: true,
   })
-  id: number;
+  id?: string;
 
   @property({
     type: 'string',
@@ -16,7 +20,7 @@ export class Customer extends Entity {
   })
   name: string;
 
-  @hasMany(() => Order, {keyTo: 'customerId'})
+  @hasMany(() => Order)
   orders?: Order[];
 
   constructor(data?: Partial<Customer>) {

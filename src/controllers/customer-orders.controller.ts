@@ -11,7 +11,7 @@ export class CustomerOrdersController {
 
   @post('/customers/{id}/order')
   async createOrder(
-    @param.path.number('id') customerId: typeof Customer.prototype.id,
+    @param.path.string('id') customerId: typeof Customer.prototype.id,
     @requestBody() orderData: Order,
   ): Promise<Order> {
     return await this.customerRepository.orders(customerId).create(orderData);

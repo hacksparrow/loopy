@@ -1,6 +1,6 @@
 import {DefaultCrudRepository} from '@loopback/repository';
 import {Order} from '../models';
-import {DbDataSource} from '../datasources';
+import {MongoDataSource, DbDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
 export class OrderRepository extends DefaultCrudRepository<
@@ -8,7 +8,7 @@ export class OrderRepository extends DefaultCrudRepository<
   typeof Order.prototype.id
 > {
   constructor(
-    @inject('datasources.db') dataSource: DbDataSource,
+    @inject('datasources.mongo') dataSource: MongoDataSource,
   ) {
     super(Order, dataSource);
   }

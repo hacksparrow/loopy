@@ -92,7 +92,7 @@ export class CustomerController {
       },
     },
   })
-  async findById(@param.path.number('id') id: number): Promise<Customer> {
+  async findById(@param.path.string('id') id: string): Promise<Customer> {
     return await this.customerRepository.findById(id);
   }
 
@@ -104,7 +104,7 @@ export class CustomerController {
     },
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody() customer: Customer,
   ): Promise<void> {
     await this.customerRepository.updateById(id, customer);
@@ -118,7 +118,7 @@ export class CustomerController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody() customer: Customer,
   ): Promise<void> {
     await this.customerRepository.replaceById(id, customer);
@@ -131,7 +131,7 @@ export class CustomerController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.customerRepository.deleteById(id);
   }
 }
